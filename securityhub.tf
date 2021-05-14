@@ -20,6 +20,6 @@ resource "aws_securityhub_standards_subscription" "foundational" {
 }
 
 resource "aws_securityhub_organization_admin_account" "admin" {
-  count            = var.admin_account_id != nil ? 1 : 0
+  count            = var.admin_account_id != null ? 1 : 0
   admin_account_id = var.admin_account_id
 }
