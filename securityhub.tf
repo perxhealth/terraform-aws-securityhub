@@ -19,13 +19,7 @@ resource "aws_securityhub_standards_subscription" "foundational" {
   standards_arn = "arn:aws:securityhub:${data.aws_region.current.name}::standards/aws-foundational-security-best-practices/v/1.0.0"
 }
 
-resource "aws_securityhub_member" "members" {
-  for_each = {for member in var.members:  member.account_id => member}
-  depends_on = [aws_securityhub_account.default]
-  account_id = each.value.account_id
-  email      = each.value.email
-  invite     = var.invite
-  lifecycle {
-    ignore_changes = [invite, email]
-  }
+resource "aws_securityhub_organization_admin_account" "admin" {
+  count            = var.admin_account_id != nil ? 1 : 0
+  admin_account_id = var.admin_account_id
 }

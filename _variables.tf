@@ -17,20 +17,13 @@ variable "subscription_foundational" {
 }
 
 variable "severity_list" {
-  type = list
+  type    = list(string)
   default = ["HIGH","CRITICAL"]
 }
 
-variable "members" {
-  type       = list
-  default     = []
-  description = "List of member AWS accounts as [{account_id: '9999', email: 'a@b.com'}, {...}] }"
-}
-
-variable "invite" {
-  type        = bool
-  default     = true
-  description = "Invite member accounts? (Use 'false' when this account is the delegated admin by master account)"
+variable "admin_account_id" {
+  type        = string
+  description = "Admin account to delegate to"
 }
 
 variable "alarm_email" {
