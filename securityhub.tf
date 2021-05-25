@@ -23,3 +23,10 @@ resource "aws_securityhub_organization_admin_account" "admin" {
   count            = var.admin_account_id != null ? 1 : 0
   admin_account_id = var.admin_account_id
 }
+
+resource "aws_securityhub_member" "member" {
+  count      = length(var.member_accounts)
+  account_id = var.member_accounts[count.index].account_id
+  email      = var.member_accounts[count.index].email
+  invite     = var.invite_member
+}

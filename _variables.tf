@@ -31,8 +31,21 @@ variable "alarm_email" {
   default     = ""
   description = "Enables email notification (optional)"
 }
+
 variable "alarm_slack_endpoint" {
   type        = string
   default     = ""
   description = "Enables slack notification to endpoint passed (optional)"
+}
+
+variable "member_accounts" {
+  type        = list(object({account_id: string, email: string}))
+  description = "The accounts to add as members"
+  default     = []
+}
+
+variable "invite_member" {
+  type        = bool
+  description = "Invite member accounts"
+  default     = false
 }
